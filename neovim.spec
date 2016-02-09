@@ -3,7 +3,7 @@
 
 Name:           neovim
 Version:        0.1.1
-Release:        76.git%{shortcommit}%{?dist}
+Release:        77.git%{shortcommit}%{?dist}
 Summary:        vim for the 21st century
 License:        ASL 2.0
 URL:            http://neovim.org/
@@ -50,6 +50,14 @@ Neovim is a project that seeks to aggressively refactor Vim in order to:
   modifications to the core source
 * Improve extensibility with a new plugin architecture
 
+%package vim-compat
+Requires: %{name} = %{version}
+Summary: Compatability symlinks for neovim
+Conflicts: vim-enhanced
+
+%description vim-compat
+Contains compatability symlinks for people who are used to typing "vim".
+
 
 %prep
 %setup -q -n %{name}-%{commit}
@@ -75,7 +83,7 @@ cd ..
 %install
 DESTDIR=%{buildroot} make install
 %find_lang nvim
-
+ln -s nvim %{buildroot}%{_bindir}/vim
 
 %files -f nvim.lang
 %doc README.md
@@ -85,6 +93,8 @@ DESTDIR=%{buildroot} make install
 %{_datadir}/nvim/runtime/*
 /usr/share/man
 
+%files vim-compat
+%{_bindir}/vim
 
 %changelog
 * Wed Dec 09 2015 David Personette <dperson@gmail.com> - 0.1.1-76.git4a1c36e
