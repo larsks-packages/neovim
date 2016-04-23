@@ -1,9 +1,9 @@
-%global commit 51055c14a623ca824d69b257304f0dd813cfda1f
+%global commit 3d7a6e4d54cbb6cb3cd7e35b604b956de9f0c950
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           neovim
-Version:        0.1.2
-Release:        77.git%{shortcommit}%{?dist}
+Version:        0.1.3
+Release:        1.git%{shortcommit}%{?dist}
 Summary:        vim for the 21st century
 License:        ASL 2.0
 URL:            http://neovim.org/
